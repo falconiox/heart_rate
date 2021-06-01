@@ -1,5 +1,5 @@
 .catalog {
-   padding-bottom: 100px;
+   padding-bottom: 80px;
    &__tabs {
       margin: 70px 0 0 0;
       padding-left: 0;
@@ -49,6 +49,11 @@
       padding: 20px 20px 26px 20px;
       border: 2px solid #e8e8e8;
       overflow: hidden;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      &:nth-child(3n) {
+         margin-right: 0;
+      }
       &__img {
          display: block;
          margin: 0 auto;
