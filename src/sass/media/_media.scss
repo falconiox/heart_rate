@@ -1,0 +1,30 @@
+@media (max-width: 991px) {
+   .container {
+      padding: 0 30px;
+   }
+   .carousel {
+      width: 720px;
+      .container {
+         padding-left: 0;
+      }
+   }
+   .catalog {
+      &__content {
+         justify-content: center;
+      }
+      &-item {
+         &:nth-child(3n) {
+            margin-right: 20px;
+         }
+      }
+   }
+   .footer {
+      &__info {
+         width: 350px;
+         height: 200px;
+      }
+   }
+}
+@media (max-width: 767px) {
+ 
+}

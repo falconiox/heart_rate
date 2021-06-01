@@ -1,15 +1,24 @@
 .carousel {
    padding: 81px 0;
-   &__inner {
+   &__slider {
       position: relative;
+   }
+   &__inner {
       width: 750px;
       margin: 0 auto;
+      overflow: hidden;
    }
-   .slick-prev,
-   .slick-next {
+   &__slides {
+      width: 2250px;
+      display: flex;
+      transform: translateX(0);
+      transition: all 0.4s;
+   }
+   &__prev,
+   &__next {
       position: absolute;
       top: 50%;
-      left: -97px;
+      left: -35px;
       transform: translateY(-50%);
       background-color: rgba(255, 255, 255, 0);
       border: none;
@@ -18,8 +27,8 @@
          height: 50px;
       }
    }
-   .slick-next {
+   &__next {
       left: auto;
-      right: -97px;
+      right: -35px;
    }
 }
