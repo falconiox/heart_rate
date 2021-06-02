@@ -28,7 +28,7 @@ function nextSlide() {
       count = 0;
    }
    images[count].style.opacity = '1';
-   acitvityDot()
+   acitvityDot();
 }
 
 const dots = document.createElement('div');
@@ -43,7 +43,7 @@ images.forEach((_, idx) => {
       images[count].style.opacity = '0';
       count = idx;
       images[idx].style.opacity = '1';
-      acitvityDot()
+      acitvityDot();
       clearInterval(intervalId);
    });
 
@@ -63,9 +63,7 @@ function acitvityDot() {
    });
 }
 
-
-acitvityDot()
-
+acitvityDot();
 
 ///
 /// Tabs /////////////////////////
@@ -107,3 +105,56 @@ document.querySelectorAll('.catalog-item__back').forEach((item, idx) => {
       contentCards[idx].classList.add('catalog-item__content_active');
    });
 });
+
+//
+/// Modal(Fade)
+//
+
+const overlay = document.querySelector('.overlay');
+const modalCons = document.querySelector('#consultation');
+const modalOrder = document.querySelector('#order');
+const modalClose = document.querySelectorAll('.modal__close');
+
+document.querySelectorAll('[data-modal=consultation]').forEach((btn) => {
+   btn.addEventListener('click', () => {
+      overlay.style.display = 'block';
+      modalCons.style.display = 'block';
+
+      setTimeout(() => {
+         overlay.style.opacity = '1';
+         modalCons.style.opacity = '1';
+      }, 0);
+   });
+});
+
+modalClose.forEach((cross) => {
+   console.log(cross);
+   cross.addEventListener('click', () => {
+      cross.parentElement.style.opacity = '0';
+      cross.parentElement.parentElement.style.opacity = '0';
+      setTimeout(() => {
+         cross.parentElement.style.display = 'none';
+         cross.parentElement.parentElement.style.display = 'none';
+      }, 1000);
+   });
+});
+
+/// buy modal
+
+const buyBtns = document.querySelectorAll('.button_mini');
+
+buyBtns.forEach((btn, idx) =>
+   btn.addEventListener('click', () => {
+      const title = document.querySelectorAll('.catalog-item__subtitle')[idx];
+
+      document.querySelector('#order .modal__descr').textContent = title.textContent
+      
+      overlay.style.display = 'block';
+      modalOrder.style.display = 'block';
+
+      setTimeout(() => {
+         overlay.style.opacity = '1';
+         modalOrder.style.opacity = '1';
+      }, 0);
+   })
+);
