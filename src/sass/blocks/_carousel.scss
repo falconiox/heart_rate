@@ -2,33 +2,44 @@
    padding: 81px 0;
    &__slider {
       position: relative;
+      height: 580px;
+      max-width: 750px;
+      margin: 0 auto;
    }
    &__inner {
-      width: 750px;
-      margin: 0 auto;
-      overflow: hidden;
-   }
-   &__slides {
-      width: 2250px;
-      display: flex;
-      transform: translateX(0);
-      transition: all 0.4s;
+      img {
+         position: absolute;
+         width: 100%;
+         opacity: 0;
+         transition: opacity 1s;
+         &:first-child {
+            opacity: 1;
+         }
+      }
    }
    &__prev,
    &__next {
       position: absolute;
       top: 50%;
-      left: -35px;
-      transform: translateY(-50%);
-      background-color: rgba(255, 255, 255, 0);
+      left: -60px;
       border: none;
-      img {
-         width: 31px;
-         height: 50px;
-      }
+      background-color: rgba(0, 0, 0, 0);
    }
    &__next {
       left: auto;
-      right: -35px;
+      right: -60px;
+   }
+   &__dots {
+      display: flex;
+      justify-content: center;
+   }
+   &__dot {
+      margin: 0 10px;
+      width: 60px;
+      height: 15px;
+      background-color: rgba(77, 77, 77, 0.5);
+      &_active {
+         background-color: $main-color;
+      }
    }
 }

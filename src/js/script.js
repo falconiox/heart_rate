@@ -2,31 +2,69 @@
 
 const prevBtn = document.querySelector('.carousel__prev');
 const nextBtn = document.querySelector('.carousel__next');
+const images = document.querySelectorAll('.carousel__inner img');
 let count = 0;
-let value = 0;
-
-nextBtn.addEventListener('click', () => {
-   value -= 750;
-
-   if (value <= -2250) {
-      value = 0;
-   }
-
-   document.querySelector(
-      '.carousel__slides'
-   ).style.transform = `translateX(${value}px)`;
-});
 
 prevBtn.addEventListener('click', () => {
-   value += 750
-   if(value > 0) {
-      value = -1500
+   images[count].style.opacity = '0';
+
+   count--;
+
+   if (count <= 0) {
+      count = images.length - 1;
    }
-   console.log(value);
-   document.querySelector(
-      '.carousel__slides'
-   ).style.transform = `translateX(${value}px)`;
+   images[count].style.opacity = '1';
 });
+
+nextBtn.addEventListener('click', nextSlide);
+
+const intervalId = setInterval(nextSlide, 5000);
+
+function nextSlide() {
+   images[count].style.opacity = '0';
+
+   count++;
+   if (count >= images.length) {
+      count = 0;
+   }
+   images[count].style.opacity = '1';
+   acitvityDot()
+}
+
+const dots = document.createElement('div');
+dots.classList.add('carousel__dots');
+
+images.forEach((_, idx) => {
+   const el = document.createElement('div');
+
+   el.classList.add('carousel__dot');
+
+   el.addEventListener('click', () => {
+      images[count].style.opacity = '0';
+      count = idx;
+      images[idx].style.opacity = '1';
+      acitvityDot()
+      clearInterval(intervalId);
+   });
+
+   dots.append(el);
+});
+
+document.querySelector('.carousel').append(dots);
+const dot = document.querySelectorAll('.carousel__dot');
+
+function acitvityDot() {
+   dot.forEach((el, idx) => {
+      if (count == idx) {
+         el.classList.add('carousel__dot_active');
+      } else {
+         el.classList.remove('carousel__dot_active');
+      }
+   });
+}
+
+
+acitvityDot()
 
 
 ///
