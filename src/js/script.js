@@ -128,7 +128,6 @@ document.querySelectorAll('[data-modal=consultation]').forEach((btn) => {
 });
 
 modalClose.forEach((cross) => {
-   console.log(cross);
    cross.addEventListener('click', () => {
       cross.parentElement.style.opacity = '0';
       cross.parentElement.parentElement.style.opacity = '0';
@@ -147,8 +146,9 @@ buyBtns.forEach((btn, idx) =>
    btn.addEventListener('click', () => {
       const title = document.querySelectorAll('.catalog-item__subtitle')[idx];
 
-      document.querySelector('#order .modal__descr').textContent = title.textContent
-      
+      document.querySelector('#order .modal__descr').textContent =
+         title.textContent;
+
       overlay.style.display = 'block';
       modalOrder.style.display = 'block';
 
@@ -158,3 +158,42 @@ buyBtns.forEach((btn, idx) =>
       }, 0);
    })
 );
+
+// Pageup(faded)
+const pageUp = document.querySelector('.pageup');
+
+window.addEventListener('scroll', () => {
+   console.log(window.pageYOffset);
+   if (window.pageYOffset > 1499) {
+      pageUp.style.display = 'block';
+      setTimeout(() => {
+            pageUp.style.opacity = '1';
+      });
+   } else {
+      pageUp.style.opacity = '0';
+
+      pageUp.addEventListener('transitionend', () => {
+         if (window.pageYOffset < 1500) {
+            pageUp.style.display = 'none';
+         }
+      });
+   }
+
+});
+
+//
+/// Validation
+//
+
+// const consultationForm = document.querySelector('#form-consultation');
+// const phone = consultationForm.querySelector('[name=phone]');
+
+// const regex =
+//    /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+
+// consultationForm.addEventListener('submit', (e) => {
+//    e.preventDefault();
+//    if (!regex.test(phone.value)) {
+//       phone.insertAdjacentHTML('afterend', `<span>Введите валидный номер телефона</span>`)
+//    }
+// });
